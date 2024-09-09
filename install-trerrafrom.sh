@@ -1,14 +1,16 @@
-#!/bin/bash -e
-################################################################################
-##  File:  install-terraform.sh
-##  Desc:  Install terraform
-################################################################################
+#!/bin/bash
 
-source $HELPER_SCRIPTS/install.sh
-
-# Install Terraform
-download_url=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/terraform/latest | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
-archive_path=$(download_with_retry "${download_url}")
-unzip -qq "$archive_path" -d /usr/local/bin
-
-invoke_tests "Tools" "Terraform"
+wget https://releases.hashicorp.com/terraform/1.9.2/terraform_1.9.2_linux_amd64.zip && \
+    unzip terraform*.zip && \
+    mv terraform /usr/local/bin
+    
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb
+add-apt-repository universe && \
+    apt-get update && \
+    apt-get install -y \
+      dotnet-sdk-6.0 \
+      dotnet-sdk-8.0 \
+      powershell && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm packages-microsoft-prod.deb
