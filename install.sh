@@ -3,6 +3,10 @@ apt-get update && \
 apt-get install -y \
 unzip
 
+ wget https://releases.hashicorp.com/terraform/'.current_version'/'.current_version'_linux_amd64.zip && \
+unzip terraform*.zip && \
+ mv terraform /usr/local/bin
+    
 wget https://releases.hashicorp.com/terraform/1.9.2/terraform_1.9.2_linux_amd64.zip && \
     unzip terraform*.zip && \
     mv terraform /usr/local/bin
