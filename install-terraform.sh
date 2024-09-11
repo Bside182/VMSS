@@ -1,5 +1,9 @@
 #!/bin/bash
 
+apt-get update && \
+apt-get install -y \
+unzip
+
 # Function to find the latest Terraform version
 get_latest_version() {
     curl -sL https://api.github.com/repos/hashicorp/terraform/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/'
