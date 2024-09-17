@@ -1,4 +1,5 @@
 #cloud-config
 runcmd:
-- wget https://raw.githubusercontent.com/Bside182/VMSS/main/install.sh
-- sudo sh install.sh
+  - wget -O /tmp/install.sh https://raw.githubusercontent.com/Bside182/VMSS/main/install.sh
+  - chmod +x /tmp/install.sh
+  - /tmp/install.sh
